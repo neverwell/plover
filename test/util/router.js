@@ -119,6 +119,17 @@ describe('util/router', function() {
   });
 
 
+  it('定位规则可以是object', function() {
+    const router = new Router();
+    router.add('/offer/:id', { module: 'offer', action: 'view' });
+    router.route('/offer/123').should.eql({
+      module: 'offer',
+      action: 'view',
+      query: { id: '123' }
+    });
+  });
+
+
   it('默认规则', function() {
     const router = new Router();
     /* eslint-disable */
